@@ -2,31 +2,64 @@ import mongoose from "mongoose";
 
 const contentSchema = new mongoose.Schema({
   about: {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+    title: { 
+      type: String, 
+      required: true 
+    },
+    description: { 
+      type: String, 
+      required: true 
+    },
     images: [String], 
   },
   projects: [
     {
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      video: { type: String }, 
+      title: { 
+        type: String, 
+        required: true 
+      },
+      description: { 
+        type: String, 
+        required: true 
+      },
+      video: { 
+        type: String 
+      }, 
       metadata: {
-        year: { type: Number },
-        client: { type: String }
+        year: { 
+          type: Number 
+        },
+        client: {
+           type: String 
+          }
       }
     }
   ],
   services: [
     {
-      title: { type: String, required: true },
-      description: { type: String, required: true }
+      title: { 
+        type: String, 
+        required: true 
+      },
+      description: { 
+        type: String, 
+        required: true 
+      }
     }
   ],
   contactInfo: {
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    address: { type: String, required: true }
+    email: { 
+      type: String, 
+      required: true 
+    },
+    phone: { 
+      type: String, 
+      required: true 
+    },
+    address: { 
+      type: String, 
+      required: true 
+    }
   },
   locations: [
     {
@@ -37,8 +70,14 @@ const contentSchema = new mongoose.Schema({
       address: { type: String }
     }
   ],
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  },
+  updatedAt: { 
+    type: Date, 
+    default: Date.now 
+  }
 });
 
 const Content = mongoose.model("Content", contentSchema);
