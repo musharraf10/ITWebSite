@@ -34,9 +34,19 @@ app.use(
   })
 );
 
+//Add Admin Routes Here -->
+
+
+
+//Add ThirdParty Routes Here -->
+
+
+//Add Employee Routes -->
+
+
+
+
 app.use(passport.initialize());
-
-
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", UserRouter);
 app.use("/api/v1", companyRouter);
