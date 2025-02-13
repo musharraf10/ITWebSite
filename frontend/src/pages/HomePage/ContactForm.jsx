@@ -4,7 +4,7 @@ import axios from "axios";
 import "./ContactForm.css"; // Custom CSS file
 import topGif from "../../assets/top.gif";
 import successGif from "../../assets/success.gif";
-import "./Contactanimation";
+// import "./Contactanimation";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
