@@ -10,7 +10,7 @@ import { isAdmin, isAuth, } from "../middlewares/isAuth.js";
 
 const taskRouter = new Router();
 
-taskRouter.route("/")
+taskRouter.route("/task")
   .get(getTasks)     
   .post(isAuth, isAdmin, createTask); 
 

@@ -106,6 +106,7 @@ export const updateServicesSection = async (req, res) => {
       return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: `Error: ${error.message}` });
     }
   };
+  
 // adding services without replacing
   export const addService = async (req, res) => {
     try {

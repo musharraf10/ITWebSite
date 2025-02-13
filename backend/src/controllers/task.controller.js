@@ -1,6 +1,5 @@
 import Task from "../models/task.model.js";
 
-import Task from "../models/Task.js";
 
 
 export const getTasksForEmployee = async (req, res) => {
@@ -69,7 +68,6 @@ export const createTask = async (req, res) => {
       title,
       description,
       deadline,
-      status,
       assignedTo,
       assignedBy,
       type,
