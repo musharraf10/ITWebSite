@@ -5,10 +5,9 @@ import { isAuth } from "../middlewares/isAuth.js";
 const companyRouter = new Router();
 
 companyRouter.get("/companies", getCompanies);
-companyRouter.get("/company/:id",isAuth, getOneCompany);
 companyRouter.post("/company",isAuth, postCompanies);
+companyRouter.get("/company/:id",isAuth, getOneCompany);
 companyRouter.delete("/company/:id",isAuth, deleteCompanies);
 companyRouter.put("/company/:id",isAuth, updateCompany);
-
 
 export default companyRouter;

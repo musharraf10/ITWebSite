@@ -45,7 +45,7 @@ export const updateSalaryOrBonus = async (req, res) => {
 
     } catch (error) {
         console.error("Error updating salary or bonus:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: error.message});
     }
 };
 
@@ -83,7 +83,7 @@ export const getSalaryAndBonusData = async (req, res) => {
 export const getEmployeePerformance = async (req, res) => {
     try {
       // req.user is set by the authentication middleware
-      const employeeId = req.user._id;
+      const employeeId = "67a9d8a53a34e6a5c57a0d93"  //req.user._id;
   
       // Find tasks where the employee is assigned
       const tasks = await Task.find({ assignedTo: { $in: [employeeId] } });

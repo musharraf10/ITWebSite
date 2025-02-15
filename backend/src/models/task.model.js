@@ -1,16 +1,33 @@
 import mongoose from "mongoose";
 
 const performanceSchema = new mongoose.Schema({
-  qualityScore: { type: Number, min: 0, max: 10 },
-  timelinessScore: { type: Number, min: 0, max: 10 },
-  accuracyScore: { type: Number, min: 0, max: 10 }
+  qualityScore: { 
+    type: Number, 
+    min: 0, max: 10 
+  },
+  timelinessScore: { 
+    type: Number, 
+    min: 0, max: 10 
+  },
+  accuracyScore: { 
+    type: Number, 
+    min: 0, max: 10 
+  }
 }, { _id: false });
 
 const reviewSchema = new mongoose.Schema({
-  reviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
-  marks: { type: Number, min: 0, max: 100 },
+  reviewedBy: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "users", 
+    required: true 
+  },
+  marks: { 
+    type: Number, 
+    min: 0, max: 100 
+  },
   comments: { type: String },
   reviewedAt: { type: Date, default: Date.now }
+  
 }, { _id: false });
 
 const taskSchema = new mongoose.Schema({
@@ -83,7 +100,7 @@ const taskSchema = new mongoose.Schema({
   }
 });
 
-// Optionally, create text indexes if you need advanced search functionality
+// Optionally, we can  create text indexes if you need advanced search functionality
 // taskSchema.index({ title: 'text', description: 'text' });
 
 const Task = mongoose.model("Task", taskSchema);

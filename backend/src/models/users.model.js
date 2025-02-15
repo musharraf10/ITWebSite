@@ -12,15 +12,13 @@ const userSchema = new mongoose.Schema({
   },
   role: { 
     type: String, 
-    enum: ["employee", "superAdmin", "thirdParty"],
+    enum: ["employee", "admin", "thirdParty"],
     required: true 
   },
   designation: { 
     type: String,
     enum: ["HR", "Project Manager", "Team Lead", "Team Member"],
-    required: function () { 
-      return this.role === "employee"; 
-    }
+    
   },
   companyId: { 
     type: mongoose.Schema.Types.ObjectId, 
@@ -81,11 +79,11 @@ const userSchema = new mongoose.Schema({
   ]
 });
 
-userSchema.virtual("tasks", {
-  ref: "Task",
-  localField: "_id",
-  foreignField: "assignedTo"
-});
+// userSchema.virtual("tasks", {
+//   ref: "Task",
+//   localField: "_id",
+//   foreignField: "assignedTo"
+// });
 
 const User = mongoose.model("User", userSchema);
 export default User;

@@ -49,12 +49,12 @@ app.use(
 app.use(passport.initialize());
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", UserRouter);
-app.use("/api/v1", companyRouter);
 app.use("/api/v1", contentRouter);
-app.use("/api/v1", userNotifyRouter);
-app.use("/api/v1", performanceRouter);
+app.use("/api/v1", empRouter);
 app.use("/api/v1", taskRouter);
-app.use("/api/v1",empRouter);
+app.use("/api/v1", userNotifyRouter);
+app.use("/api/v1", companyRouter);
+app.use("/api/v1", performanceRouter);
 
 app.listen(process.env.PORT, () => {
   console.log("server is running on port", process.env.PORT);

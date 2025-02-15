@@ -21,7 +21,7 @@ export const getTasksForEmployee = async (req, res) => {
 
 export const getTasks = async (req, res) => {
   try {
-    const { employeeId } = req.query;
+    const employeeId  = "67a9d8a53a34e6a5c57a0d93";
     let query = {};
     if (employeeId) {
       query.assignedTo = { $in: [employeeId] };
