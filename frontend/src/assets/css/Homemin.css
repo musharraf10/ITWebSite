@@ -15,7 +15,7 @@ body {
 .home-minicontainer {
   flex-direction: row;
   display: flex;
-  width: 90%;
+  width: 100%;
 }
 
 .home-imagediv {
@@ -39,6 +39,8 @@ body {
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
   object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home-righttext {
@@ -106,4 +108,60 @@ body {
     text-align: center;
     margin-bottom: 20px;
   }
+}
+/* Ensure edit input size remains the same as original */
+.edit-input, .edit-textarea {
+  width: 100%;
+  font-size: inherit;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Popup styling */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.popup-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+.home-imagediv,
+.home-headingtag-container,
+.home-paratag-container,
+.home-button-container {
+  position: relative;
+}
+
+
+.edit-icon {
+  position: absolute ;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
 }

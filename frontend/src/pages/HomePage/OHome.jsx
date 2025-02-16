@@ -7,9 +7,9 @@ import Homepageswiper from "../../components/HomeComponent/homePageSwiper";
 import HomeMin from "../../components/HomeComponent/HomeMin";
 import Waves from "./Waves";
 import AboutYourCompany from "./AboutYourCompany";
-import ContactForm from "./ContactForm";
 import Ourservicespage from "./Ourservicepage";
 import CircleContent from "./CircleContent";
+import ContactForm from "./ContactForm";
 
 const OHome = () => {
   const heroSectionRef = useRef(null);

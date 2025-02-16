@@ -32,6 +32,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HomeIcon from "@mui/icons-material/Home";
 import { Style } from "@mui/icons-material";
+import OHome from "../../pages/HomePage/OHome";
+import {AdminHome} from "../../pages/HomePage/AdminContentEdit";
 
 // Navigation items
 const NAVIGATION = [
@@ -142,7 +144,7 @@ export default function AdminDashBoard() {
       case "usermanagement":
         return <Typography paragraph>👥 User Management Content</Typography>;
       case "contentmanagement":
-        return <Typography paragraph>📝 Content Management Content</Typography>;
+        return <Typography paragraph><AdminHome/></Typography>;
       case "financial":
         return <Typography paragraph>💰 Financial Reports</Typography>;
       case "taskreports":
