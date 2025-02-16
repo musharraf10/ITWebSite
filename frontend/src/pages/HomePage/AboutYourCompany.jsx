@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CountUp from "react-countup";
-import { Edit, Plus, Save, X } from "lucide-react"; // Icons for edit, add, save, cancel
+import { Edit, Plus } from "lucide-react";
 import {
   TextField,
   Button,
@@ -8,9 +8,14 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from "@mui/material"; // Importing Material-UI components
+} from "@mui/material";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css'; 
 import "./AboutYourCompany.css";
 import HomeMin from "../../components/HomeComponent/HomeMin";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+
 
 export default function AboutYourCompany({ editMode }) {
   const [companyLogos, setCompanyLogos] = useState([
@@ -18,15 +23,78 @@ export default function AboutYourCompany({ editMode }) {
       id: 1,
       src: `https://picsum.photos/100?random=${Math.floor(
         Math.random() * 1000
-      )}`, // Random logo
+      )}`, 
       link: "https://company1.com",
     },
     {
       id: 2,
       src: `https://picsum.photos/100?random=${Math.floor(
         Math.random() * 1000
-      )}`, // Random logo
+      )}`, 
       link: "https://company2.com",
+    },
+    {
+      id: 3,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 4,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 5,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 6,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 7,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 8,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 9,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 10,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
+    },
+    {
+      id: 11,
+      src: `https://picsum.photos/100?random=${Math.floor(
+        Math.random() * 1000
+      )}`, 
+      link: "https://company1.com",
     },
   ]);
 
@@ -38,19 +106,17 @@ export default function AboutYourCompany({ editMode }) {
   ]);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editLogoIndex, setEditLogoIndex] = useState(null); // Index of logo being edited
-  const [editLogoUrl, setEditLogoUrl] = useState(""); // URL of the logo being edited
+  const [editLogoIndex, setEditLogoIndex] = useState(null); 
+  const [editLogoUrl, setEditLogoUrl] = useState(""); 
   const [isAdding, setIsAdding] = useState(false);
   const [newLogo, setNewLogo] = useState({ src: "", link: "" });
 
-  // Handle edit button click
   const handleEditLogo = (logo, index) => {
     setIsEditing(true);
     setEditLogoIndex(index);
-    setEditLogoUrl(logo.src); // Set the current logo URL to the input
+    setEditLogoUrl(logo.src);
   };
 
-  // Save the edited logo URL
   const handleSaveLogo = () => {
     const updatedLogos = companyLogos.map((logo, index) =>
       index === editLogoIndex ? { ...logo, src: editLogoUrl } : logo
@@ -60,7 +126,6 @@ export default function AboutYourCompany({ editMode }) {
     setEditLogoIndex(null);
   };
 
-  // Add a new logo
   const handleAddLogo = () => {
     setCompanyLogos((prev) => [
       ...prev,
@@ -73,51 +138,64 @@ export default function AboutYourCompany({ editMode }) {
   return (
     <>
       <div className="aboutcontainer">
-        {/* Stats Section */}
         <div className="stats-container">
           {stats.map((stat, index) => (
             <div key={index} className="stat-box">
-              <h2 className="stat-value">
+              <h2 className="stat-value" style={{ color: "#1995AD" }}>
                 <CountUp start={0} end={stat.value} duration={3} /> {stat.suffix}
               </h2>
-              <p className="stat-title">{stat.title}</p>
+              <p className="stat-title" style={{ color: "#1995AD" }}>{stat.title}</p>
             </div>
           ))}
         </div>
 
         <HomeMin editMode={editMode} />
 
-        {/* Logos Section */}
+        {/* Swiper for logo sliding */}
         <div className="logos-wrapper">
-          <div className="logos-container">
+          <Swiper
+          modules={[Autoplay]}
+            spaceBetween={5}
+            slidesPerView={6}
+            loop={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            
+            // pagination={{ clickable: true }}
+          >
             {companyLogos.map((logo, index) => (
-              <div className="logo-edit-container" key={logo.id}>
-                <a href={logo.link} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={logo.src}
-                    alt={`Company ${index + 1}`}
-                    className="company-logo"
-                  />
-                </a>
-                {editMode && (
-                  <Edit
-                    className="edit-iconLogo"
-                    onClick={() => handleEditLogo(logo, index)}
-                  />
-                )}
-              </div>
+              <SwiperSlide key={logo.id}>
+                <div className="logo-edit-container">
+                  <a href={logo.link} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={logo.src}
+                      alt={`Company ${index + 1}`}
+                      className="company-logo"
+                    />
+                  </a>
+                  {editMode && (
+                    <Edit
+                      className="edit-iconLogo"
+                      onClick={() => handleEditLogo(logo, index)}
+                    />
+                  )}
+                </div>
+              </SwiperSlide>
             ))}
 
-            {/* "+" Icon to add a new logo */}
             {editMode && (
-              <div className="add-logo-container" onClick={() => setIsAdding(true)}>
-                <Plus className="add-logo-icon" />
-              </div>
+              <SwiperSlide>
+                <div className="add-logo-container" onClick={() => setIsAdding(true)}>
+                  <Plus className="add-logo-icon" />
+                </div>
+              </SwiperSlide>
             )}
-          </div>
+          </Swiper>
         </div>
 
-        {/* Edit Logo Modal with Material-UI */}
+        {/* Dialog for editing logo */}
         <Dialog open={isEditing} onClose={() => setIsEditing(false)}>
           <DialogTitle>Edit Logo URL</DialogTitle>
           <DialogContent>
@@ -131,23 +209,16 @@ export default function AboutYourCompany({ editMode }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSaveLogo}
-            >
+            <Button variant="contained" color="primary" onClick={handleSaveLogo}>
               Save
             </Button>
-            <Button
-              variant="outlined"
-              onClick={() => setIsEditing(false)}
-            >
+            <Button variant="outlined" onClick={() => setIsEditing(false)}>
               Cancel
             </Button>
           </DialogActions>
         </Dialog>
 
-        {/* Add Logo Modal with Material-UI */}
+        {/* Dialog for adding a new logo */}
         <Dialog open={isAdding} onClose={() => setIsAdding(false)}>
           <DialogTitle>Add New Logo</DialogTitle>
           <DialogContent>
@@ -169,17 +240,10 @@ export default function AboutYourCompany({ editMode }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddLogo}
-            >
+            <Button variant="contained" color="primary" onClick={handleAddLogo}>
               Add
             </Button>
-            <Button
-              variant="outlined"
-              onClick={() => setIsAdding(false)}
-            >
+            <Button variant="outlined" onClick={() => setIsAdding(false)}>
               Cancel
             </Button>
           </DialogActions>

@@ -29,7 +29,7 @@ body {
   border-radius: 20px;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(to left, DeepSkyBlue 50%, transparent 50%);
+  background: linear-gradient(to left, #1995AD 50%, transparent 50%);
   background-size: 200% 100%;
   transition: background-position 0.7s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;

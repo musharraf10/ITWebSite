@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "../../assets/css/Carousel.css";
-import { FaEdit } from "react-icons/fa"; // Import the edit icon from react-icons
+import { FaEdit, FaPlus } from "react-icons/fa"; // Import icons
 import {
   Dialog,
   DialogActions,
@@ -25,7 +25,7 @@ const initialCarouselData = [
   },
   {
     id: 2,
-    image: "https://shorturl.at/gRFvf",
+    image: "https://images.unsplash.com/photo-1555169062-013468b47731?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YW5pbWFsfGVufDB8fDB8fHww",
     heading: "Modern",
     text: "Secure, scalable, and cost-effective cloud solutions.",
   },
@@ -41,6 +41,7 @@ export default function Carousel({ editMode }) {
   const [carouselData, setCarouselData] = useState(initialCarouselData);
   const [isEditing, setIsEditing] = useState(false);
   const [editItem, setEditItem] = useState(null);
+  const [isAdding, setIsAdding] = useState(false); // State to control adding new items
 
   // Handle edit click
   const handleEdit = (item) => {
@@ -48,7 +49,7 @@ export default function Carousel({ editMode }) {
     setEditItem(item);
   };
 
-  // Handle form submit
+  // Handle form submit (for editing)
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedData = carouselData.map((item) =>
@@ -58,10 +59,23 @@ export default function Carousel({ editMode }) {
     setIsEditing(false);
   };
 
-  // Handle form field change
+  // Handle form field change (for editing)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditItem({ ...editItem, [name]: value });
+  };
+
+  // Handle form submit (for adding a new item)
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+    const newItem = {
+      id: carouselData.length + 1,
+      image: e.target.image.value,
+      heading: e.target.heading.value,
+      text: e.target.text.value,
+    };
+    setCarouselData([...carouselData, newItem]);
+    setIsAdding(false);
   };
 
   return (
@@ -73,7 +87,7 @@ export default function Carousel({ editMode }) {
           loop={true}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={5}
+          slidesPerView={3} 
           threshold={8}
           coverflowEffect={{
             rotate: 0,
@@ -117,6 +131,20 @@ export default function Carousel({ editMode }) {
         </Swiper>
       </div>
 
+      {/* Add new item button */}
+      {editMode && (
+        <div className="add-btn-container">
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<FaPlus />}
+            onClick={() => setIsAdding(true)}
+          >
+            Add New Item
+          </Button>
+        </div>
+      )}
+
       {/* Edit Modal using Material UI Dialog */}
       <Dialog open={isEditing} onClose={() => setIsEditing(false)}>
         <DialogTitle>Edit Slide</DialogTitle>
@@ -153,6 +181,44 @@ export default function Carousel({ editMode }) {
             </Button>
             <Button type="submit" color="primary">
               Save
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+
+      {/* Add Modal using Material UI Dialog */}
+      <Dialog open={isAdding} onClose={() => setIsAdding(false)}>
+        <DialogTitle>Add New Carousel Item</DialogTitle>
+        <form onSubmit={handleAddSubmit}>
+          <DialogContent>
+            <TextField
+              label="Heading"
+              name="heading"
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Text"
+              name="text"
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Image URL"
+              name="image"
+              fullWidth
+              margin="normal"
+              required
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setIsAdding(false)} color="secondary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              Add
             </Button>
           </DialogActions>
         </form>

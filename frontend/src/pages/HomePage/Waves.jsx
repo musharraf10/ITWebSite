@@ -1,5 +1,5 @@
 import React from "react";
-import "./Waves.css"; // Import the external CSS file
+import "./Waves.css"; 
 
 const Waves = () => {
   return (

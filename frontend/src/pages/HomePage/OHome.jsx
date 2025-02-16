@@ -35,7 +35,7 @@ const OHome = () => {
           }
         });
       },
-      { threshold: 0.2 } // Trigger animation when 20% of the section is visible
+      { threshold: 0.2 }
     );
 
     sections.forEach((section) => {
@@ -53,8 +53,6 @@ const OHome = () => {
     };
   }, []);
 
-  // Scroll function to handle section scrolling
-// Scroll function to handle section scrolling
 const scrollToSection = (section) => {
   switch (section) {
     case "herosection":

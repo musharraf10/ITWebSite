@@ -7,14 +7,13 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Loading Screen */
 .loading {
   text-align: center;
   font-size: 1.5rem;
   margin-top: 20%;
 }
 
-/* Navbar */
+
 .navbar {
   background: #007bff;
   padding: 10px;
@@ -77,13 +76,11 @@ body {
   transform: scale(1.05);
 }
 
-/* Sections */
 section {
   padding: 20px 20px;
   text-align: center;
 }
 
-/* Content Sections */
 .about, .services, .projects, .locations, .contact {
   background: white;
   margin: 20px auto;
@@ -185,11 +182,11 @@ section {
 
 .navbarfixed{
   width: 100%;
-  z-index: 999999;
+  z-index: 1200;
   position: sticky;
   top: 72px;
 }
-/* +-+Edit Mode */
+
 .editable-container {
   position: relative;
 }

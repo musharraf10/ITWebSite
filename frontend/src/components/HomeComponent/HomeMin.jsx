@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Edit } from "lucide-react"; // Edit icon library
-import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"; // MUI components
+import { Edit } from "lucide-react"; 
+import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"; 
 import "../../assets/css/Homemin.css";
 
 export default function HomeMin({ editMode }) {
   const [homeData, setHomeData] = useState({
-    image: `https://picsum.photos/300?random=${Math.floor(Math.random() * 1000)}`, // Random placeholder image
+    image: `https://picsum.photos/300?random=${Math.floor(Math.random() * 1000)}`, 
     heading: "About Us",
     paragraph: `We are more than just a networking platform; we are a community of forward-thinking businesses 
     and professionals driven by a shared vision of growth, collaboration, 
@@ -14,28 +14,24 @@ export default function HomeMin({ editMode }) {
     buttonText: "Contact Us",
   });
 
-  const [editingField, setEditingField] = useState(null); // Track which field is being edited
-  const [showImagePopup, setShowImagePopup] = useState(false); // Track image popup state
-  const [newImageUrl, setNewImageUrl] = useState(""); // Store new image URL
-
-  // Handler to change field value
+  const [editingField, setEditingField] = useState(null); 
+  const [showImagePopup, setShowImagePopup] = useState(false); 
+  const [newImageUrl, setNewImageUrl] = useState(""); 
   const handleChange = (key, value) => {
     setHomeData((prevData) => ({
       ...prevData,
       [key]: value,
     }));
   };
-
-  // Handle edit button click for image (show popup)
   const handleImageEdit = () => {
-    setNewImageUrl(homeData.image); // Set current image URL in the popup input
-    setShowImagePopup(true); // Show the image edit popup
+    setNewImageUrl(homeData.image); 
+    setShowImagePopup(true); 
   };
 
-  // Handle saving new image URL from the popup
+  
   const handleImageSave = () => {
     handleChange("image", newImageUrl);
-    setShowImagePopup(false); // Close popup
+    setShowImagePopup(false); 
   };
 
   return (
@@ -60,11 +56,13 @@ export default function HomeMin({ editMode }) {
                   size="small"
                   value={homeData.heading}
                   onChange={(e) => handleChange("heading", e.target.value)}
-                  onBlur={() => setEditingField(null)} // Exit edit mode on blur
+                  onBlur={() => setEditingField(null)} 
                   fullWidth
+                  style={{color:"#1995AD"}}
                 />
               ) : (
                 <p
+                  style={{color:"#1995AD"}}
                   className="home-headingtag"
                   onClick={() => editMode && setEditingField("heading")}
                 >
@@ -73,12 +71,13 @@ export default function HomeMin({ editMode }) {
               )}
               {editMode && editingField !== "heading" && (
                 <Edit
+
                   className="edit-icon"
                   onClick={() => setEditingField("heading")}
                 />
               )}
             </div>
-
+            {/* #1995AD, #A1D6E2, #f1f1f2 */}
             {/* Paragraph */}
             <div className="home-paratag-container">
               {editMode && editingField === "paragraph" ? (
@@ -89,12 +88,13 @@ export default function HomeMin({ editMode }) {
                   rows={4}
                   value={homeData.paragraph}
                   onChange={(e) => handleChange("paragraph", e.target.value)}
-                  onBlur={() => setEditingField(null)} // Exit edit mode on blur
+                  onBlur={() => setEditingField(null)} 
                   fullWidth
                 />
               ) : (
                 <p
                   className="home-paratag"
+                  style={{color:"black"}}
                   onClick={() => editMode && setEditingField("paragraph")}
                 >
                   {homeData.paragraph}
@@ -108,19 +108,19 @@ export default function HomeMin({ editMode }) {
               )}
             </div>
 
-            {/* Button Text */}
             <div className="home-button-container">
               {editMode && editingField === "buttonText" ? (
                 <TextField
+                  style={{color:"#1995AD"}}
                   variant="outlined"
                   size="small"
                   value={homeData.buttonText}
                   onChange={(e) => handleChange("buttonText", e.target.value)}
-                  onBlur={() => setEditingField(null)} // Exit edit mode on blur
+                  onBlur={() => setEditingField(null)} 
                   fullWidth
                 />
               ) : (
-                <Button variant="contained" onClick={() => editMode && setEditingField("buttonText")}>
+                <Button variant="contained" onClick={() => editMode && setEditingField("buttonText")} style={{backgroundColor:"#1995AD"}}>
                   {homeData.buttonText}
                 </Button>
               )}

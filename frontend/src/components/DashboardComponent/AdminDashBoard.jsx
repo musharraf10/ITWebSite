@@ -1,10 +1,5 @@
-import * as React from "react";
-import {
-  styled,
-  useTheme,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { styled, useTheme, createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -31,9 +26,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HomeIcon from "@mui/icons-material/Home";
-import { Style } from "@mui/icons-material";
-import OHome from "../../pages/HomePage/OHome";
-import {AdminHome} from "../../pages/HomePage/AdminContentEdit";
+import { AdminHome } from "../../pages/HomePage/AdminContentEdit";
 
 // Navigation items
 const NAVIGATION = [
@@ -86,51 +79,29 @@ const themeWithCustomColors = createTheme({
 });
 
 // Styled Main content
-// Styled Main content
 const Main = styled("main", {
-    shouldForwardProp: (prop) => prop !== "open",
-  })(({ theme, open }) => ({
-    flexGrow: 1, // Take up the remaining space
-    padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.default,
-    minHeight: "100vh", // Full height
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: open ? `${drawerWidth}px` : "0px", // Adjust margin based on drawer state
-    width: open ? `calc(100% - ${drawerWidth}px)` : "100%", // Adjust width based on drawer state
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "0px",
-      width: "100%",
-      padding: theme.spacing(1),
-    },
-  }));
-  
-  // Styled AppBar
-  const CustomAppBar = styled(AppBar, {
-    shouldForwardProp: (prop) => prop !== "open",
-  })(({ theme, open }) => ({
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
-    marginLeft: open ? `${drawerWidth}px` : "0px",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-      marginLeft: "0px",
-    },
-  }));
-  
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open, marginLeft }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  backgroundColor: theme.palette.background.default,
+  minHeight: "100vh",
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: marginLeft, // Use marginLeft from props
+  width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
+}));
+
 export default function AdminDashBoard() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [open, setOpen] = React.useState(!isMobile);
-  const [selectedSegment, setSelectedSegment] = React.useState("home");
-  const [reportOpen, setReportOpen] = React.useState(false);
+  const [open, setOpen] = useState(!isMobile);
+  const [selectedSegment, setSelectedSegment] = useState("home");
+  const [reportOpen, setReportOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setOpen(!isMobile);
   }, [isMobile]);
 
@@ -144,7 +115,7 @@ export default function AdminDashBoard() {
       case "usermanagement":
         return <Typography paragraph>👥 User Management Content</Typography>;
       case "contentmanagement":
-        return <Typography paragraph><AdminHome/></Typography>;
+        return <Typography paragraph><AdminHome /></Typography>;
       case "financial":
         return <Typography paragraph>💰 Financial Reports</Typography>;
       case "taskreports":
@@ -156,13 +127,14 @@ export default function AdminDashBoard() {
     }
   };
 
-  
+  // Handle marginLeft logic based on screen size and drawer state
+  const marginLeft = isMobile ? "0px" : open ? `$0px` : "-240px";
 
   return (
     <ThemeProvider theme={themeWithCustomColors}>
       <Box sx={{ display: "flex", flexGrow: 1, minHeight: "100vh" }}>
         <CssBaseline />
-        <CustomAppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} style={{zIndex:9999}}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -177,8 +149,9 @@ export default function AdminDashBoard() {
               Admin Dashboard
             </Typography>
           </Toolbar>
-        </CustomAppBar>
+        </AppBar>
         <Drawer
+        
           variant={isMobile ? "temporary" : "persistent"}
           open={open}
           onClose={handleDrawerToggle}
@@ -203,7 +176,7 @@ export default function AdminDashBoard() {
             </IconButton>
           </Box>
           <Divider />
-          <List>
+          <List style={{zIndex: 1200}}>
             {NAVIGATION.map((item) => (
               <React.Fragment key={item.segment}>
                 <ListItem disablePadding>
@@ -245,7 +218,7 @@ export default function AdminDashBoard() {
           </List>
         </Drawer>
 
-        <Main open={open} style={{ marginLeft: open ? "0px" : "-240px"}}>
+        <Main open={open} marginLeft={marginLeft}>
           <Toolbar />
           {renderContent()}
         </Main>

@@ -17,57 +17,55 @@ export default function Ourservicespage({ editMode }) {
   ]);
 
   const [newService, setNewService] = useState({ icon: "", title: "", openings: "" });
-  const [editingIndex, setEditingIndex] = useState(null); // Track which service is being edited
-  const [open, setOpen] = useState(false); // Modal open state
+  const [editingIndex, setEditingIndex] = useState(null); 
+  const [open, setOpen] = useState(false); 
 
-  // Handle input change for the form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewService({ ...newService, [name]: value });
   };
 
-  // Add or edit a service
+  
   const handleAddOrEditService = () => {
     if (newService.icon && newService.title && newService.openings) {
       if (editingIndex === null) {
-        // Adding a new service
+        
         setServices([...services, { ...newService, openings: parseInt(newService.openings) }]);
       } else {
-        // Editing an existing service
+        
         const updatedServices = services.map((service, index) =>
           index === editingIndex
             ? { ...newService, openings: parseInt(newService.openings) }
             : service
         );
         setServices(updatedServices);
-        setEditingIndex(null); // Reset the editing index after saving
+        setEditingIndex(null);
       }
-      setNewService({ icon: "", title: "", openings: "" }); // Reset form after adding/editing
+      setNewService({ icon: "", title: "", openings: "" });
       setOpen(false); // Close modal
     } else {
       alert("Please fill out all fields.");
     }
   };
 
-  // Handle editing of a service
   const handleEditService = (index) => {
-    setNewService(services[index]); // Populate the form with the selected service's data
-    setEditingIndex(index); // Set the editing index
-    setOpen(true); // Open the modal
+    setNewService(services[index]);
+    setEditingIndex(index); 
+    setOpen(true); 
   };
 
-  // Handle adding a new service
+  
   const handleAddNewService = () => {
-    setNewService({ icon: "", title: "", openings: "" }); // Reset form for a new service
-    setEditingIndex(null); // Not editing any existing service
-    setOpen(true); // Open the modal
+    setNewService({ icon: "", title: "", openings: "" }); 
+    setEditingIndex(null);
+    setOpen(true);
   };
 
   // Cancel editing
   const handleCancelEdit = () => {
-    setNewService({ icon: "", title: "", openings: "" }); // Reset form
-    setEditingIndex(null); // Exit edit mode
-    setOpen(false); // Close modal
+    setNewService({ icon: "", title: "", openings: "" }); 
+    setEditingIndex(null);
+    setOpen(false); 
   };
 
   return (
@@ -77,7 +75,6 @@ export default function Ourservicespage({ editMode }) {
         <div className="allserviceitems">
           {services.map((service, index) => (
             <div className="items" key={index}>
-              {/* Show edit icon only in edit mode */}
               {editMode && !open && (
                 <IconButton
                   className="edit-icon-btn"
@@ -97,7 +94,6 @@ export default function Ourservicespage({ editMode }) {
             </div>
           ))}
 
-          {/* Add New Service Card */}
           {editMode && (
             <div className="items add-new-service" onClick={handleAddNewService}>
               <div className="add-icon-wrapper">
@@ -110,7 +106,6 @@ export default function Ourservicespage({ editMode }) {
           )}
         </div>
 
-        {/* Material-UI Dialog (Modal) for the form */}
         <Dialog open={open} onClose={handleCancelEdit}>
           <DialogTitle>{editingIndex === null ? "Add New Service" : "Edit Service"}</DialogTitle>
           <DialogContent>
