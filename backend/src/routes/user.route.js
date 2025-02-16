@@ -4,11 +4,11 @@ import { isAuth } from "../middlewares/isAuth.js";
 
 const UserRouter = new Router();
 
-UserRouter.route("/users").get( isAuth, getUsers);
-UserRouter.route("/user/:id").get( isAuth, getOneUser);
-UserRouter.route("/user").post( isAuth, postUsers);
-UserRouter.route("/user/:id").delete( isAuth, deleteUsers);
-UserRouter.route("/user/:id").put( isAuth, updateUser);
+UserRouter.get("/users",isAuth, getUsers);
+UserRouter.get("/user/:id",isAuth, getOneUser);
+UserRouter.post("/user",isAuth, postUsers);
+UserRouter.delete("/user/:id",isAuth, deleteUsers);
+UserRouter.put("/user/:id",isAuth, updateUser);
 
 
 export default UserRouter;

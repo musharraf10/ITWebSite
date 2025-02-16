@@ -1,0 +1,358 @@
+/* Outer container to center the circle */
+.circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Main circular layout */
+.circle {
+    width: 100%;
+    height: 100vw;
+    max-width: 90%;
+    max-height: 900px;
+    border-radius: 100%;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid navy;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: inset(0 0 31% 0);
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
+}
+
+/* Keeping only top part of inner circles */
+.circle::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid navy;
+    width: 75%;
+    height: 85%;
+    clip-path: inset(0 0 10% 0);
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 90%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 90%);
+}
+
+.circle::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid navy;
+    width: 60%;
+    height: 70%;
+    clip-path: inset(0 0 10% 0);
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 90%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 90%);
+}
+
+/* Center Content */
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: black;
+    font-weight: bold;
+    margin-top: -40%;
+}
+
+.recognize-btn {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    padding: 20px 20px;
+    background-color: navy;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Position images on the circular border */
+.award-top,
+.award-left,
+.award-right,
+.award-bottom-left,
+.award-bottom-right {
+    box-sizing: border-box; /* Ensure box-sizing is set for all images */
+    display: inline-block; /* Allow them to align inline */
+    position: absolute;
+}
+
+.award-top {
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+}
+
+.award-left {
+    margin-top: -25%;
+    left: 13%;
+    width: 100px;
+}
+
+.award-bottom-left {
+    position: absolute;
+    bottom: 50%;
+    left: 9%;
+    width: 100px;
+}
+
+.award-right {
+    margin-top: -25%;
+    right: 16%;
+    width: 100px;
+}
+
+.award-bottom-right {
+    position: absolute;
+    bottom: 50%;
+    right: 10%;
+    width: 100px;
+}
+
+@media (max-width: 1200px) {
+    .circle {
+        max-width: 80%;
+        max-height: 750px;
+    }
+
+    .circle::before {
+        width: 70%;
+        height: 80%;
+    }
+
+    .circle::after {
+        width: 50%;
+        height: 60%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-top: -30%;
+    }
+
+    .recognize-btn {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    .award-top {
+        width: 100px;
+    }
+
+    .award-left,
+    .award-right {
+        width: 90px;
+    }
+
+    .award-bottom-left,
+    .award-bottom-right {
+        width: 90px;
+        margin-bottom: -10%;
+    }
+}
+
+@media (max-width: 965px) {
+    .circle {
+        border: none;
+        position: relative;
+    }
+
+    .circle::before {
+        border: none;
+        width: 60%;
+        height: 70%;
+    }
+
+    .circle::after {
+        border: none;
+        width: 45%;
+        height: 55%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-top: 40%;
+    }
+
+    .recognize-btn {
+        font-size: 1rem;
+        padding: 10px;
+        margin-top: 5%;
+    }
+
+    /* Inline images on smaller screens */
+    .award-top,
+    .award-left,
+    .award-right,
+    .award-bottom-left,
+    .award-bottom-right {
+        display: inline-block; /* Allow images to stay inline */
+        width: auto; /* Adjust width to allow for inline positioning */
+        margin: 0 5px; /* Small margins between the images */
+    }
+
+    .award-top {
+        position: fixed;
+        margin-top: 100px;
+        width: 80px;
+    }
+
+    .award-left,
+    .award-right {
+        position: fixed;
+        position: absolute;
+        margin-top: -30%;
+        width: 70px;
+    }
+
+    .award-bottom-left,
+    .award-bottom-right {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .circle {
+        border: none;
+        max-width: 85%;
+        max-height: 600px;
+    }
+
+    .circle::before {
+        border: none;
+        width: 60%;
+        height: 70%;
+    }
+
+    .circle::after {
+        border: none;
+        width: 45%;
+        height: 55%;
+    }
+
+    h1 {
+        font-size: 1rem;
+        margin-top: 50%;
+    }
+
+    .recognize-btn {
+        font-size: 1rem;
+        padding: 10px 10px;
+    }
+
+    .award-top {
+        width: 80px;
+    }
+
+    .award-left,
+    .award-right {
+        width: 60px;
+        margin-top: -130px;
+    }
+}
+
+@media (max-width: 600px) {
+    .circle {
+        border: none;
+        max-width: 90%;
+        max-height: 500px;
+    }
+
+    .circle::before {
+        border: none;
+        width: 55%;
+        height: 65%;
+    }
+
+    .circle::after {
+        border: none;
+        width: 40%;
+        height: 50%;
+    }
+
+    h1 {
+        font-size: 1rem;
+        margin-top: 100px;
+        margin-left: 60px;
+    }
+
+    .recognize-btn {
+        font-size: 0.5rem;
+        padding: 5px 5px;
+        margin-top: 13%;
+        margin-left: 50px;
+    }
+
+    .award-top {
+        width: -20px;
+    }
+
+    .award-left,
+    .award-right {
+        width: 50px;
+        margin-left: 40px;
+    }
+}
+
+@media (max-width: 460px) {
+    .circle {
+        border: none;
+        max-width: 90%;
+        max-height: 500px;
+    }
+
+    .circle::before {
+        border: none;
+        width: 55%;
+        height: 65%;
+    }
+
+    .circle::after {
+        border: none;
+        width: 40%;
+        height: 50%;
+    }
+
+    h1 {
+        font-size: 1rem;
+        margin-top: 100px;
+        margin-left: 60px;
+    }
+
+    .recognize-btn {
+        font-size: 0.5rem;
+        padding: 5px 5px;
+        margin-top: 13%;
+        margin-left: 50px;
+    }
+
+    .award-top {
+        width: -20px;
+        margin-left: -33px;
+        margin-top: 70px;
+    }
+
+    .award-left,
+    .award-right {
+        width: 30px;
+        margin-left: -20px;
+    }
+
+    .award-bottom-left,
+    .award-bottom-right {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .circle-container{
+        display: none !important;
+    }
+}

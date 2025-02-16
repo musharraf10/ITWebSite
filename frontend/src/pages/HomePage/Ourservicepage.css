@@ -1,0 +1,92 @@
+body {
+  font-family: montserrat;
+}
+
+.ourservicespage {
+  width: 100%;
+  margin: 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ourservicespage .ourservicesheadline {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.ourservicespage .allserviceitems {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.ourservicespage .items {
+  padding: 15px;
+  margin: 20px 5px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(to left, DeepSkyBlue 50%, transparent 50%);
+  background-size: 200% 100%;
+  transition: background-position 0.7s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.ourservicespage .items:hover {
+  background-position: -100% 0;
+  color: white;
+}
+
+.ourservicespage .items:hover .itemicons > i {
+  color: black !important;
+}
+
+.ourservicespage .itemicons {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  font-size: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.ourservicespage .pctext {
+  font-size: 1.4rem;
+}
+
+.ourservicespage .itemtext p {
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .ourservicespage .items {
+      width: 23% !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .ourservicespage .items {
+      width: 30% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .ourservicespage .items {
+      width: 45% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ourservicespage .items {
+      width: 45% !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ourservicespage .items {
+      width: 100% !important;
+      margin: 10px 0px !important;
+  }
+}

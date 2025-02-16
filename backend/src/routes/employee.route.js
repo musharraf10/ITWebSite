@@ -6,15 +6,14 @@ import { isAuth } from "../middlewares/isAuth.js";
 
 const empRouter = new Router();
 
-empRouter.route("/update-emp-payment").put(updateSalaryOrBonus)
+empRouter.route("/updateemppayment").put(updateSalaryOrBonus)
 
-empRouter.route("/emp-payment-history").get(getSalaryAndBonusData)
+empRouter.route("/emppaymenthistory").get(getSalaryAndBonusData)
 
-empRouter.route("/emp-invoice").get(generateLastMonthInvoice)
+empRouter.route("/empinvoice").get(generateLastMonthInvoice)
 
 empRouter.route("/mytask").get(isAuth, getTasksForEmployee);
 
-empRouter.route("/mytask/performance")
-  .get(isAuth, getEmployeePerformance);
+empRouter.route("/mytask/performance").get(isAuth, getEmployeePerformance);
 
 export default empRouter;

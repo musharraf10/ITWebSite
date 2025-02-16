@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   background: #f8f9fa;
+  scroll-behavior: smooth;
 }
 
 /* Loading Screen */
@@ -34,6 +35,7 @@ body {
   margin: 0 15px;
   cursor: pointer;
   font-weight: bold;
+  transition: color 0.3s ease-in-out;
 }
 
 .navbar ul li:hover {
@@ -42,19 +44,23 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(45deg, #007bff, #0056b3);
-  color: white;
+  background: linear-gradient(45deg, #88b9ed, #8191a1);
+  color: rgb(253, 243, 243);
   text-align: center;
-  padding: 100px 20px;
+  /* padding: 80px 20px; */
+  /* border-radius: 10px; */
+  margin-bottom: 50px;
 }
 
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 10px;
+  color: white;
 }
 
 .hero p {
   font-size: 1.5rem;
+  color: white;
 }
 
 .cta-button {
@@ -63,28 +69,35 @@ body {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease-in-out, transform 0.2s ease;
 }
 
 .cta-button:hover {
   background: #ffc107;
+  transform: scale(1.05);
 }
 
 /* Sections */
 section {
-  padding: 50px 20px;
+  padding: 20px 20px;
   text-align: center;
 }
 
-/* About, Services, Projects */
+/* Content Sections */
 .about, .services, .projects, .locations, .contact {
   background: white;
   margin: 20px auto;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
+.about:hover, .services:hover, .projects:hover, .locations:hover, .contact:hover {
+  transform: scale(1.02);
+}
+
+/* Cards */
 .mission-vision {
   display: flex;
   justify-content: space-around;
@@ -97,6 +110,7 @@ section {
   padding: 20px;
   border-radius: 8px;
   width: 45%;
+  text-align: center;
 }
 
 /* Service & Project Cards */
@@ -106,7 +120,7 @@ section {
   margin: 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
 .service-card:hover, .project-card:hover {
@@ -119,6 +133,7 @@ section {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeIn 1s ease-in forwards;
+ 
 }
 
 @keyframes fadeIn {
@@ -142,14 +157,14 @@ section {
 }
 
 .zoom-in {
-  animation: zoomIn 1s ease-in-out;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: zoomIn 0.8s ease-in forwards;
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.9);
-  }
   to {
+    opacity: 1;
     transform: scale(1);
   }
 }
@@ -161,4 +176,15 @@ section {
   text-align: center;
   padding: 10px;
   margin-top: 20px;
+}
+
+.allcontainer{
+  width: 100%;
+  position: relative;
+}
+
+.navbarfixed{
+  width: 100%;
+  z-index: 999999;
+  position: fixed;
 }

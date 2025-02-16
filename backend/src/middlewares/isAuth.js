@@ -6,7 +6,6 @@ dotenv.config();
 
 export const isAuth = (req, res, next) => {
   const token = req.cookies.token;
-  console.log(req)
   console.log("Token Received:", token);
 
   if (!token) {

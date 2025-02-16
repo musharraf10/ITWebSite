@@ -20,10 +20,11 @@ import { UserContextProvider } from "./context/UserContext.jsx";
 import EmployeeDashBoard from "./components/DashboardComponent/EmployeeDashBoard.jsx";
 import ThirdPartyDB from "./components/DashboardComponent/ThirdPartyDB.jsx";
 import OHome from "./pages/HomePage/OHome.jsx";
+import "./App.css"
 
 function App() {
   return (
-    <div>
+    <>
     <AuthProvider>
       <UserContextProvider>
         <AdminContextProvider>
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/getemp1" element={<EmployeeListPage />} />
 
                   <Route path="/" element={<OHome />} />
+                  <Route path="/home" element={<Home1 />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/login1" element={<Login1 />} />
 
@@ -83,7 +85,7 @@ function App() {
         </AdminContextProvider>
       </UserContextProvider>
     </AuthProvider>
-  </div>
+  </>
   );
 }
 

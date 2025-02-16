@@ -5,6 +5,8 @@ import React from "react";
 
 
 export default function HomeMin() {
+
+  
   return (
     <>
       <div className="home-container">
@@ -16,14 +18,12 @@ export default function HomeMin() {
           </div>
 
           <div className="home-righttext">
-            <p className="home-headingtag">Our Mission</p>
+            <p className="home-headingtag">About Us</p>
             <p className="home-paratag">
-              Our mission is to connect businesses, foster collaboration, and
-              drive growth through an innovative networking platform. We
-              understand the power of strong connections and the impact they can
-              have on your business's success. That's why we've developed a
-              platform that brings together businesses of all sizes, industries,
-              and backgrounds.
+            we are more than just a networking platform; we are a community of forward-thinking businesses 
+            and professionals driven by a shared vision of growth, collaboration, 
+            and innovation. Founded with a passion for connecting businesses and fostering relationships, 
+            Busitron has evolved into a thriving ecosystem where opportunities flourish, knowledge flows, and connections thrive.
             </p>
             <button>contact us</button>
           </div>

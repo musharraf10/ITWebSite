@@ -29,7 +29,7 @@ export const Login = async ( req,res ) =>{
 
       const { email, password } = req.body;
 
-      //nsole.log(email, password) debuggng purpose
+      // connsole.log(email, password) debuggng purpose
 
       if(!email || !password){
           return res.status(httpStatus.BAD_REQUEST).json({message : "Please Enter All Fields"})
